@@ -15,15 +15,24 @@
     <main>
         <div class="d-flex">
             <div class="col-4">
-                <h2>Search for a City</h2>
-                <div>
-                    <input placeholder="Enter a City">
-                </div>
-                <button class="btn btn-info">Search</button>
+                <form id="city-search" class="card-body">
+                    <h2>Search for a City</h2>
+                    <input name="city" id="city" type="text" class="form-input" autofocus="true" placeholder="Enter a City" />
+                    <button type="submit" class="btn btn-info">Search</button>
+                </form>
             </div>
             <div class="col-lg-9">
-                <div class="col">
-                    <h2>Current Weather</h2>
+                <div class="col card">
+                    <h2 class="current">Current Weather</h2>
+                    <div id="current-container" class="card-body">
+                        <p id="city-name"></p>
+                        <p id="date"></p>
+                        <img id="current-icon">
+                        <p id="temp"></p>
+                        <p id="humidity"></p>
+                        <p id="wind"></p>
+                        <p id="uv"></p>
+                    </div>
                 </div>
                 <div class="col">
                     <h2>5-day Forecast</h2>
@@ -35,5 +44,6 @@
         </div>
     </main>
 <script src="./homepage.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
