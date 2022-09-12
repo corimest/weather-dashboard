@@ -12,20 +12,26 @@
     <header class="text-center container-fluid bg-primary">
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="text-center container-fluid">
-        <h2>Search for a City</h2>
-        <div>
-            <input placeholder="Enter a City">
+    <div class="d-flex">
+        <div class="col-4">
+            <h2>Search for a City</h2>
+            <div>
+                <input placeholder="Enter a City">
+            </div>
+            <button class="btn btn-info">Search</button>
         </div>
-        <button>Search</button>
-        
+        <div class="col-lg-9">
+            <div class="col">
+                <h2>Current Weather</h2>
+            </div>
+            <div class="col">
+                <h2>5-day Forecast</h2>
+                <div>
+                    <!--placeholder for forecast days-->
+                </div>
+            </div>
+        </div>    
     </div>
-
 </body>
-
-
-
-
 <script src="./homepage.js"></script>
-
 </html>
