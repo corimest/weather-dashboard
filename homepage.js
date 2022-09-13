@@ -14,7 +14,7 @@ var formSubmitHandler = function(event) {
 
     if(city) { 
         getWeather(city); 
-        //get5dayWeather(city);
+        forecastWeather(city);
     } else {
         alert("Please enter a city"); 
     }
@@ -38,22 +38,29 @@ var getWeather = function(cityName) {
             cityIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + response.data.weather[0].icon + "@2x.png");
             tempEl.innerHTML = "Current Temperature: " + response.data.main.temp + "degrees";
             humidityEl.innerHTML = "Current Humidity: " + response.data.main.humidity + "%";
-            windEl.innerHTML = "Current Wind Speed: " + response.data.wind.speed + " MPH";
-
-    
-            var cityInfo = response.data.id;
-            var forecastApiURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityInfo + "&appid=" + apiKey;
-            axios.get(forecastApiURL)
-                .then(console.log(response))
-                //.then(function (response) {
-                    //             console.log(response); 
-                    //             // dateEl.innerHTML = 
-                    //             // cityIconEl.setAttribute()
-                    //             // tempEl.innerHTML = 
-                    //             // humidityEl.innerHTML = 
-                    //             // windEl.innerHTML =
-                    //         })
+            windEl.innerHTML = "Current Wind Speed: " + response.data.wind.speed + "MPH";
         })
+}; 
+
+
+var forecastWeather = function(cityName) {
+    var dateEl = document.querySelector("#future-date"); 
+    var cityIconEl = document.querySelector("#future-icon"); 
+    var tempEl = document.querySelector("#future-temp"); 
+    var humidityEl = document.querySelector("#future-humidity"); 
+    var windEl = document.querySelector("#future-wind"); 
+
+    var forecastApiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
+    axios.get(forecastApiURL)
+        .then(function (response) {
+            console.log(response); 
+            dateEl.innerHTML = response.data.list[0].dt_txt
+            cityIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + response.data.list[0].weather[0].icon + "@2x.png"); 
+            tempEl.innerHTML = "Temperature" + response.data.list[0].temp + "degrees"; 
+            humidityEl.innerHTML = "Humidity" + response.data.list[0].humidity + "%";
+            windEl.innerHTML = "Wind Speed:" + response.data.list[0].speed + "MPH"; 
+                    
+            })
 };
 
 
